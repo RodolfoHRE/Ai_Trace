@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Ai Trace{% endblock %}
+
+
+
+{% block content %}
+    <button type="button" class="botao-input">
+        <img src="{% static 'img/image.png' %}" alt="imagem" class="icone">
+        Input de Imagem
+    </button>
+    <div class="analise">
+        <button type="button" class="botao-analise">
+            Analise
+            <img src="{% static 'img/analise.png' %}" alt="imagem" class="icone">
+        </button>
+    </div>
+    
+{% endblock %}
+    
+{% block res %}
+ <h2>Resultado da Analise</h2>
+ <br>
+ 
+{% endblock %}

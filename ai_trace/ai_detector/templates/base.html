@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Ai Trace{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            
+            <div class="logo-container">
+                {% block logo %}
+                <div class="logo-circle">
+                    <img src="{% static 'img/logo.svg' %}" alt="Logo do site" class="logo">
+                </div>
+                {% endblock %}
+            </div>
+            
+            <div class="nome"><h1>Ai Trace</h1></div>
+            <div class="botao-container">
+                
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            {% block content %}
+            <!-- Conteúdo das páginas específicas será inserido aqui -->
+            {% endblock %}
+        </div>
+        <div class="res">
+        {% block res %}
+            <!-- Conteúdo das páginas específicas será inserido aqui -->
+            {% endblock %}
+    </div>
+    </main>
+    {% block scripts %}{% endblock %}
+</body>
+</html>
