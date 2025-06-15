@@ -223,3 +223,71 @@ body .item-voto{
     font-family: 'Nunito', sans-serif;
     color: #121212;
 }
+
+@media (max-width: 500px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+  }
+
+  .logo-container,
+  .nome,
+  .botao-container {
+    flex: none;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .logo-circle {
+    width: 70px;
+    height: 70px;
+  }
+
+  .nome {
+    font-size: 1.2rem;
+    padding: 4px 0;
+  }
+
+  .dropbtn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+  }
+
+  .dropdown-content {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .imagem-questionario {
+    max-width: 90%;
+    margin: 20px auto;
+  }
+
+  button.botao-analise {
+    position: static;
+    width: 80%;
+    margin: 20px auto;
+  }
+
+  body .container {
+    margin: 5% 5%;
+    padding: 5%;
+  }
+
+  body .res {
+    margin: 5% 5%;
+    padding: 5%;
+  }
+
+  img.icone {
+    width: 1.2em;
+  }
+
+  button.botao-input {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}
