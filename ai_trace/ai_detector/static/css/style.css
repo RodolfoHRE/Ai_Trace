@@ -70,7 +70,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    left: 0;
+    right: 0;
     background-color: #083c8fc5;
     min-width: 120px;
     box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
@@ -181,7 +181,7 @@ body .container{
 
     position: relative;
     border-radius: 45px;
-    margin-top: 5%;
+    margin-top: 75px;
     margin-right: 25%;
     margin-left: 25%;
     padding-left: 3%;
@@ -224,70 +224,74 @@ body .item-voto{
     color: #121212;
 }
 
+
+@media (min-width: 501px) {
+  .icone-contato-mobile {
+    display: none;
+  }
+}
+
+
 @media (max-width: 500px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    padding: 8px;
+    padding: 8px 12px;
   }
 
-  .logo-container,
-  .nome,
-  .botao-container {
-    flex: none;
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
 
   .logo-circle {
-    width: 70px;
-    height: 70px;
+    width: 45px;
+    height: 45px;
   }
 
   .nome {
-    font-size: 1.2rem;
-    padding: 4px 0;
+    text-align: center;
+    font-size: 1.0rem;
+    line-height: 1;
+ 
   }
 
-  .dropbtn {
-    padding: 6px 12px;
+  .botao-container {
+    align-items: center;
+  }
+
+  .texto-contato {
+    display: none;
+  }
+
+  .icone-contato-mobile {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+  body .container {
+    margin: 20px 5%;
+    padding: 20px;
+    border-radius: 25px;
+  }
+
+  body .res {
+    margin: 20px 5%;
+    padding: 20px;
+    border-radius: 25px;
+  }
+
+  .item-voto {
     font-size: 0.9rem;
   }
 
-  .dropdown-content {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .imagem-questionario {
-    max-width: 90%;
-    margin: 20px auto;
+  button.botao-input {
+    padding: 6px 10px;
+    font-size: 0.9rem;
   }
 
   button.botao-analise {
     position: static;
     width: 80%;
     margin: 20px auto;
+
+    border-radius: 40px;
+    font-size: 1rem;
   }
 
-  body .container {
-    margin: 5% 5%;
-    padding: 5%;
-  }
-
-  body .res {
-    margin: 5% 5%;
-    padding: 5%;
-  }
-
-  img.icone {
-    width: 1.2em;
-  }
-
-  button.botao-input {
-    font-size: 0.9rem;
-    padding: 6px 10px;
-  }
+  
 }
