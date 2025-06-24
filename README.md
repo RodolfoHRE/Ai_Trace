@@ -1,6 +1,12 @@
-# 🌐 Ai Trace – Site Oficial
+# <img src="https://https://github.com/RodolfoHRE/Ai_Trace/main/assents/logo.svg" alt="AiTrace" width="20"/> Ai Trace
 
-Este repositório contém o código do **site oficial do projeto Ai Trace**, um Trabalho de Conclusão de Curso (TCC) que investiga o cenário atual da geração de imagens por Inteligência Artificial (IA) e como as pessoas percebem essas imagens.
+Este repositório corresponde ao desenvolvimento do **Ai Trace**, uma ferramenta web capaz de identificar a procedência de imagens, classificando-as como criadas por seres humanos ou geradas por inteligência artificial. 
+
+O sistema permite que usuários façam upload de imagens para análise. Caso a imagem seja detectada como gerada por IA, o sistema também tenta identificar qual modelo de IA foi responsável pela sua geração.
+
+O objetivo principal do projeto é fornecer uma solução acessível para detecção de conteúdo sintético, contribuindo para a compreensão dos limites atuais da inteligência artificial na geração de imagens e seus impactos no cenário digital.
+
+Este repositório contém exclusivamente o código da aplicação web que executa essa análise. 
 
 ## 🧠 Sobre o projeto
 
