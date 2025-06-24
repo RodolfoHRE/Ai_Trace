@@ -1,4 +1,4 @@
-# <img src="https://https://github.com/RodolfoHRE/Ai_Trace/main/assents/logo.svg" alt="AiTrace" width="20"/> Ai Trace
+# Ai Trace
 
 Este repositório corresponde ao desenvolvimento do **Ai Trace**, uma ferramenta web capaz de identificar a procedência de imagens, classificando-as como criadas por seres humanos ou geradas por inteligência artificial. 
 
