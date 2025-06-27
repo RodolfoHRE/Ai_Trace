@@ -11,6 +11,30 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from enum import StrEnum
+import os
+
+
+
+class Envs(StrEnum):
+    PRODUCTION = 'production'
+    DEVELOPMENT = 'development'
+
+
+def get_secret(key: str, default: str = '') -> str:
+    value = os.getenv(key, default)
+    if os.path.isfile(value):
+        with open(value) as f:
+            return f.read()
+    return value
+
+
+
+ENVIRONMENT = os.getenv('ENVIRONMENT')
+SECRET_KEY = get_secret('SECRET_KEY')
+DJANGO_PORT = os.getenv('DJANGO_PORT', '8000')
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +44,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-vj4p!r360@%-zou*^#$f2ovnz!t=pt%=_lh=!4s@3g-ddd##_j'
+# SECRET_KEY = 'django-insecure-vj4p!r360@%-zou*^#$f2ovnz!t=pt%=_lh=!4s@3g-ddd##_j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+if ENVIRONMENT == Envs.PRODUCTION:
+    DEBUG = False
+    ALLOWED_HOSTS = ['saude.digital.local']
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+elif ENVIRONMENT == Envs.DEVELOPMENT:
+    DEBUG = True
+    ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
 
 # Application definition
