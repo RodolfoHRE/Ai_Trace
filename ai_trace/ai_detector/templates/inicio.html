@@ -3,24 +3,122 @@
 
 {% block title %}Ai Trace{% endblock %}
 
-
-
 {% block content %}
-    <button type="button" class="botao-input">
-        <img src="{% static 'img/image.png' %}" alt="imagem" class="icone">
-        Input de Imagem
-    </button>
-    <div class="analise">
-        <button type="button" class="botao-analise">
+    <form id="upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label class="botao-input">
+            <img src="{% static 'img/image.png' %}" alt="imagem" class="icone">
+            Input de Imagem
+            <input type="file" name="image" id="image-input" accept="image/*" style="display:none;">
+        </label>
+        <span id="file-name"></span>
+        <div id="preview"></div>
+        <button type="submit" class="botao-analise">
             Analise
             <img src="{% static 'img/analise.png' %}" alt="imagem" class="icone">
         </button>
-    </div>
-    
+    </form>
+    <script>
+        // Limite de tamanho (ex: 2MB)
+        const MAX_SIZE = 2 * 1024 * 1024;
+        document.getElementById('image-input').onchange = function(e) {
+            const file = e.target.files[0];
+            if (file && file.size > MAX_SIZE) {
+                alert('Arquivo muito grande! Máximo 2MB.');
+                e.target.value = '';
+                document.getElementById('file-name').textContent = '';
+                document.getElementById('preview').innerHTML = '';
+                return;
+            }
+            document.getElementById('file-name').textContent = file ? file.name : '';
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(ev) {
+                    document.getElementById('preview').innerHTML = `<img src="${ev.target.result}" style="max-width:200px;">`;
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        // Limpa preview ao sair da página
+        window.onbeforeunload = function() {
+            document.getElementById('preview').innerHTML = '';
+        };
+    </script>
+    <script src="{% static 'js/analise.js' %}"></script>
 {% endblock %}
-    
+
 {% block res %}
+{% if file_uploaded %}
  <h2>Resultado da Analise</h2>
  <br>
- 
+ <div style="display: flex; justify-content: center; gap: 48px; margin-top: 2em;">
+   <div class="progress-circle gpt">
+     <div class="circle-inner">
+       <svg viewBox="0 0 36 36" class="circular-chart">
+         <path class="circle-bg"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+         <path class="circle"
+           stroke-dasharray="0, 100"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+       </svg>
+       <img src="{% static 'img/logo_gpt.png' %}" alt="GPT Logo" class="circle-logo">
+     </div>
+     <div class="legenda" id="legenda-0">0%</div>
+     <div style="text-align:center; margin-top: 0.5em;">GPT (OpenAI)</div>
+   </div>
+   <div class="progress-circle gemini">
+     <div class="circle-inner">
+       <svg viewBox="0 0 36 36" class="circular-chart">
+         <path class="circle-bg"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+         <path class="circle"
+           stroke-dasharray="0, 100"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+       </svg>
+       <img src="{% static 'img/logo_gemini.png' %}" alt="Gemini Logo" class="circle-logo">
+     </div>
+     <div class="legenda" id="legenda-1">0%</div>
+     <div style="text-align:center; margin-top: 0.5em;">Gemini (Google)</div>
+   </div>
+   <div class="progress-circle generica">
+     <div class="circle-inner">
+       <svg viewBox="0 0 36 36" class="circular-chart">
+         <path class="circle-bg"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+         <path class="circle"
+           stroke-dasharray="0, 100"
+           d="M18 2.0845
+              a 15.9155 15.9155 0 0 1 0 31.831
+              a 15.9155 15.9155 0 0 1 0 -31.831" />
+       </svg>
+       <img src="{% static 'img/logo_ia.png' %}" alt="IA Logo" class="circle-logo">
+     </div>
+     <div class="legenda" id="legenda-2">0%</div>
+     <div style="text-align:center; margin-top: 0.5em;">IA Genérica</div>
+   </div>
+ </div>
+ <script>
+   const percentuais = [90, 60, 15];
+   percentuais.forEach(function(val, idx) {
+     const circle = document.querySelectorAll('.circle')[idx];
+     const legenda = document.getElementById('legenda-' + idx);
+     setTimeout(function() {
+       if(circle && legenda) {
+         circle.setAttribute('stroke-dasharray', val + ', 100');
+         legenda.innerText = val + '%';
+       }
+     }, 300 + idx * 200);
+   });
+ </script>
+{% endif %}
 {% endblock %}
